@@ -4,6 +4,7 @@ import DataTable from "@/components/shared/data-table/data-table"
 import Modal from "@/components/shared/modals/modal"
 import { TableCell, TableRow } from "@/components/ui/table"
 import { useUsers } from "./core/hooks/useUsers"
+import FormUser from "./form-user/form-user"
 
 const User = (): JSX.Element => {
   const { openModal, handleOpenCloseModal } = useUsers()
@@ -26,12 +27,12 @@ const User = (): JSX.Element => {
   return (
     <>
       <Modal
-        title=""
+        title="Criar usuário"
         labelButton="Adicionar usuário"
         open={openModal}
         onClose={handleOpenCloseModal}
       >
-        ...
+        <FormUser />
       </Modal>
 
       <DataTable
