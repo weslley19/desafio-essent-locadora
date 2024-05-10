@@ -2,6 +2,7 @@ import Header from "@/components/shared/header/header";
 import ListItem from "@/components/shared/sidebar/list-item";
 import SideBar from "@/components/shared/sidebar/sidebar";
 import { EnvelopeOpenIcon, HomeIcon, PersonIcon, RocketIcon } from "@radix-ui/react-icons";
+import User from "./(registers)/users/page";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       <div className="w-full flex flex-col">
         <Header />
         <main className="container flex-grow py-8 bg-content">
-          ...
+          <User />
         </main>
       </div>
     </div>

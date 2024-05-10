@@ -24,6 +24,7 @@ const config = {
       },
       colors: {
         content: "hsl(var(--content))",
+        container: "hsl(var(--container))",
         aside: "hsl(var(--aside))",
         header: "hsl(var(--header))",
         listItem: "hsl(var(--list-item))",
