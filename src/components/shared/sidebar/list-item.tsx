@@ -5,8 +5,9 @@ interface ListItemProps {
 const ListItem = ({ children }: ListItemProps): JSX.Element => {
   return (
     <li
-      className="rounded-xl mx-auto w-3/5 h-8 flex
-      items-center cursor-pointer transition-colors pl-3
+      className="rounded-xl flex justify-start gap-2 p-2
+      items-center cursor-pointer transition-colors h-8
+      w-9/12 mx-auto
       hover:bg-listItem hover:text-white"
     >
       {children}
