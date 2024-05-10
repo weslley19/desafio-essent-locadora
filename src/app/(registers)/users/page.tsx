@@ -39,6 +39,7 @@ const User = (): JSX.Element => {
         title="Lista de usuários"
         header={["Name", "Email", "Role"]}
         body={<Body />}
+        className="mt-6"
       />
     </>
   )

@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTrigger,
@@ -24,11 +23,6 @@ const Modal = ({ title, labelButton, children, open, onClose }: ModalProps): JSX
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>{title}</DialogHeader>
         {children}
-        <DialogClose className="mt-5">
-          <Button type="button" variant="destructive">
-            Fechar
-          </Button>
-        </DialogClose>
       </DialogContent>
     </Dialog>
   )
