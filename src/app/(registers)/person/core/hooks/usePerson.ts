@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-export function useUsers () {
+export function usePerson () {
   const [openModal, setOpenModal] = useState<boolean>(false)
 
   const handleOpenCloseModal = () => {

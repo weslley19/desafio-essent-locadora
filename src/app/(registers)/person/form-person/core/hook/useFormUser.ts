@@ -3,23 +3,23 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from 'react-toastify'
 
-import { CreateUserForm, createUserSchema, initValues } from '../validation/schema'
+import { CreatePersonForm, createPersonSchema, initValues } from '../validation/schema'
 
-export function useFormUser() {
+export function useFormPerson() {
   const [requestEndpoint, setRequestEndpoint] = useState<boolean>(false)
 
-  const hookForm = useForm<CreateUserForm>({
+  const hookForm = useForm<CreatePersonForm>({
     defaultValues: initValues,
-    resolver: zodResolver(createUserSchema)
+    resolver: zodResolver(createPersonSchema)
   })
 
-  const onSubmit: SubmitHandler<CreateUserForm> = (data) => {
+  const onSubmit: SubmitHandler<CreatePersonForm> = (data) => {
     setRequestEndpoint(true)
     try {
       console.log(data)
-      toast.success('Usuário criado com sucesso!')
+      toast.success('Pessoa criado com sucesso!')
     } catch (error: any) {
-      toast.error('Erro ao criar usuário! Tente novamente')
+      toast.error('Erro ao criar pessoa! Tente novamente')
     } finally {
       setRequestEndpoint(false)
     }
