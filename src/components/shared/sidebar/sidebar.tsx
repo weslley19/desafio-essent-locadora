@@ -1,0 +1,17 @@
+interface SideBarProps {
+  children: React.ReactNode
+}
+
+const SideBar = ({ children }: SideBarProps): JSX.Element => {
+  return (
+    <aside className="w-80 min-h-screen bg-aside">
+      <nav className="mt-20">
+        <ul className="flex flex-col gap-4">
+          {children}
+        </ul>
+      </nav>
+    </aside>
+  )
+}
+
+export default SideBar

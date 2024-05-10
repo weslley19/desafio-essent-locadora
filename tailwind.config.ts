@@ -23,6 +23,10 @@ const config = {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       colors: {
+        content: "hsl(var(--content))",
+        aside: "hsl(var(--aside))",
+        header: "hsl(var(--header))",
+        listItem: "hsl(var(--list-item))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
