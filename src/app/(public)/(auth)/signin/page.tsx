@@ -8,7 +8,7 @@ import Loading from "@/components/shared/loading/loading"
 import { useLogin } from "./core/hook/useLogin"
 
 const Login = (): JSX.Element => {
-  const { hookForm, onSubmit, requestEndpoint } = useLogin()
+  const { hookForm, onSubmit } = useLogin()
 
   return (
     <form onSubmit={hookForm.handleSubmit(onSubmit)}>
@@ -24,10 +24,10 @@ const Login = (): JSX.Element => {
         {hookForm.formState.errors.password && <span className="text-xs	text-red-600">{hookForm.formState.errors.password.message}</span>}
       </div>
 
-      <Button variant={"default"} disabled={requestEndpoint}>
+      <Button variant={"default"} disabled={hookForm.formState.isSubmitting}>
         <CheckIcon className="mr-2" />
         Entrar
-        {requestEndpoint && <Loading />}
+        {hookForm.formState.isSubmitting && <Loading />}
       </Button>
     </form>
   )

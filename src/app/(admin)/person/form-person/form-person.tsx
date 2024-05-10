@@ -6,7 +6,7 @@ import Loading from "@/components/shared/loading/loading"
 import { useFormPerson } from "./core/hook/useFormUser"
 
 const FormPerson = (): JSX.Element => {
-  const { hookForm, onSubmit, requestEndpoint } = useFormPerson()
+  const { hookForm, onSubmit } = useFormPerson()
 
   return (
     <form onSubmit={hookForm.handleSubmit(onSubmit)}>
@@ -31,10 +31,10 @@ const FormPerson = (): JSX.Element => {
       <hr className="my-5" />
 
       <div className="flex justify-end">
-        <Button variant={"default"} disabled={requestEndpoint}>
+        <Button variant={"default"} disabled={hookForm.formState.isSubmitting}>
           <CheckIcon className="mr-2" />
           Confirmar
-          {requestEndpoint && <Loading />}
+          {hookForm.formState.isSubmitting && <Loading />}
         </Button>
       </div>
     </form>

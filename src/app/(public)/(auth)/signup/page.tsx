@@ -8,7 +8,7 @@ import { PlusIcon } from "@radix-ui/react-icons"
 import { useRegister } from "./core/hook/useRegister"
 
 const Register = (): JSX.Element => {
-  const { hookForm, onSubmit, requestEndpoint } = useRegister()
+  const { hookForm, onSubmit } = useRegister()
 
   return (
     <form onSubmit={hookForm.handleSubmit(onSubmit)}>
@@ -30,10 +30,10 @@ const Register = (): JSX.Element => {
         {hookForm.formState.errors.password && <span className="text-xs	text-red-600">{hookForm.formState.errors.password.message}</span>}
       </div>
 
-      <Button variant={"default"} disabled={requestEndpoint}>
+      <Button variant={"default"} disabled={hookForm.formState.isSubmitting}>
         <PlusIcon className="mr-2" />
         Cadastrar
-        {requestEndpoint && <Loading />}
+        {hookForm.formState.isSubmitting && <Loading />}
       </Button>
     </form>
   )

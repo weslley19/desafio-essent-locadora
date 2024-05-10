@@ -10,6 +10,14 @@ const nextConfig = {
         source: '/autenticar',
         destination: '/authentication',
       },
+      {
+        source: '/pessoas',
+        destination: '/person',
+      },
+      {
+        source: '/filmes',
+        destination: '/movies',
+      }
     ];
   }
 };
