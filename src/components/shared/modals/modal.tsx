@@ -20,7 +20,7 @@ const Modal = ({ title, labelButton, children, open, onClose }: ModalProps): JSX
       <DialogTrigger asChild>
         <Button variant="default">{labelButton}</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] bg-container">
         <DialogHeader>{title}</DialogHeader>
         {children}
       </DialogContent>

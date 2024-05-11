@@ -27,7 +27,15 @@ const nextConfig = {
       {
         source: '/filmes',
         destination: '/movies',
-      }
+      },
+      {
+        source: '/alugados',
+        destination: '/rented',
+      },
+      {
+        source: '/reservas-pendentes',
+        destination: '/reserved',
+      },
     ];
   }
 };

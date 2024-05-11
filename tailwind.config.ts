@@ -28,6 +28,7 @@ const config = {
         aside: "hsl(var(--aside))",
         header: "hsl(var(--header))",
         listItem: "hsl(var(--list-item))",
+        modal: "hsl(var(--modal))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
