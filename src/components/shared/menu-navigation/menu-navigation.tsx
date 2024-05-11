@@ -6,22 +6,25 @@ import { DesktopIcon, PersonIcon, PlayIcon, TokensIcon } from "@radix-ui/react-i
 const MenuNavigation = (): JSX.Element => {
   return (
     <>
-      <ListItem>
+      <ListItem href="/">
         <TokensIcon className="mr-3" />
-        <Link href={'/'}>Home</Link>
+        Home
       </ListItem>
       <GroupListItem title="CADASTROS">
-        <ListItem>
+        <ListItem href="/pessoas">
           <PersonIcon className="mr-3" />
-          <Link href={'/person'}>Pessoas</Link>
+          Pessoas
         </ListItem>
       </GroupListItem>
       <GroupListItem title="LOCAÇÃO">
-        <ListItem>
+        <ListItem href="/filmes">
           <PlayIcon className="mr-3" />
-          <Link href={'/movies'}>Filmes</Link>
+          Filmes
         </ListItem>
-        <ListItem><DesktopIcon className="mr-3" /> Alugados</ListItem>
+        <ListItem href="/alugados">
+          <DesktopIcon className="mr-3" />
+          Alugados
+        </ListItem>
       </GroupListItem>
     </>
   )

@@ -1,17 +1,29 @@
+"use client"
+
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+
 interface ListItemProps {
+  href: string
   children: React.ReactNode
 }
 
-const ListItem = ({ children }: ListItemProps): JSX.Element => {
+const ListItem = ({ href, children }: ListItemProps): JSX.Element => {
+  const pathname = usePathname()
+  const isActive = pathname === href
+
   return (
     <li
-      className="rounded-xl flex justify-start gap-2 p-2
+      className={`rounded-xl flex justify-start gap-2 p-2
       items-center cursor-pointer transition-colors h-8
       w-9/12 mx-auto
       hover:text-white
-      hover:bg-listItem select:bg-listItem"
+      hover:bg-listItem select:bg-listItem
+      ${isActive ? "text-white bg-listItem" : ""}`}
     >
-      {children}
+      <Link href={href} className="w-full flex gap-2 items-center">
+        {children}
+      </Link>
     </li>
   )
 }

@@ -6,7 +6,7 @@ const SideBar = ({ children }: SideBarProps): JSX.Element => {
   return (
     <aside className="w-80 min-h-screen bg-aside">
       <nav className="mt-20">
-        <ul className="flex flex-col gap-4">
+        <ul className="flex flex-col gap-4 pt-10">
           {children}
         </ul>
       </nav>
