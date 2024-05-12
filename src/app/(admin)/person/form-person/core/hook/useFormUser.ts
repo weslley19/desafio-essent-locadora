@@ -1,9 +1,11 @@
-import { useState } from 'react'
+"use client"
+
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from 'react-toastify'
 
 import { CreatePersonForm, createPersonSchema, initValues } from '../validation/schema'
+import { createPerson } from '../../../actions'
 
 export function useFormPerson() {
   const hookForm = useForm<CreatePersonForm>({
@@ -11,12 +13,16 @@ export function useFormPerson() {
     resolver: zodResolver(createPersonSchema)
   })
 
-  const onSubmit: SubmitHandler<CreatePersonForm> = (data) => {
-    try {
-      console.log(data)
-      toast.success('Pessoa criado com sucesso!')
-    } catch (error: any) {
-      toast.error('Erro ao criar pessoa! Tente novamente')
+  const onSubmit: SubmitHandler<CreatePersonForm> = async (data) => {
+    const dataToSend: CreatePersonForm = {
+      ...data,
+      cpf: data.cpf.replace(/\D/g, '')
+    }
+    const response = await createPerson(dataToSend)
+    if (response.status === 201) {
+      toast.success('Pessoa cadastrada com sucesso')
+    } else {
+      toast.error(response?.message)
     }
   }
 
