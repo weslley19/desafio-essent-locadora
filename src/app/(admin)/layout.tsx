@@ -19,7 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children?: React.Rea
           disableTransitionOnChange
         >
           <>
-            <div className="flex font-extralight">
+            <div className="flex font-extra">
               <SideBar>
                 <MenuNavigation />
               </SideBar>

@@ -7,40 +7,78 @@
 // npx prisma generate
 // rodar sempre que alterar o schema
 // npx prisma migrate dev --name added_job_title  rodar migrate
+// npx prisma studio
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model Post {
-  id        String     @default(cuid()) @id
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  String?
+// Definition of the Person model
+model Person {
+  id             Int               @id @default(autoincrement())
+  name           String
+  birthday       DateTime
+  cpf            String            @unique
+  createdAt      DateTime?         @default(now()) @map(name: "created_at")
+  updatedAt      DateTime?         @updatedAt @map(name: "updated_at")
+  TypePersonType TypePersonType[]
+  movies         Movie[]           @relation("MovieCast")
+  Rental         Rental[]
 }
 
-model User {
-  id            String       @default(cuid()) @id
-  name          String?
-  email         String?   @unique
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  posts         Post[]
-  @@map(name: "users")
+// Definition of the TypePerson model
+model TypePerson {
+  id             Int               @id @default(autoincrement())
+  name           String
+  createdAt      DateTime?         @default(now()) @map(name: "created_at")
+  updatedAt      DateTime?         @updatedAt @map(name: "updated_at")
+  TypePersonType TypePersonType[]
 }
 
-model Teste {
-  id        String     @default(cuid()) @id
-  title     String
-  content   String?
-  published Boolean @default(false)
-  authorId  String?
+// Definition of the TypePersonType model
+model TypePersonType {
+  id           Int         @id @default(autoincrement())
+  person       Person      @relation(fields: [personId], references: [id])
+  personId     Int
+  typePerson   TypePerson  @relation(fields: [typePersonId], references: [id])
+  typePersonId Int
+  createdAt    DateTime?   @default(now()) @map(name: "created_at")
+  updatedAt    DateTime?   @updatedAt @map(name: "updated_at")
+}
+
+model Movie {
+  id              Int       @id @default(autoincrement())
+  title           String
+  releaseYear     Int
+  image           String?
+  synopsis        String
+  category        String
+  rentalValue     Float
+  availableCopies Int
+  createdAt       DateTime? @default(now()) @map(name: "created_at")
+  updatedAt       DateTime? @updatedAt @map(name: "updated_at")
+  cast            Person[]  @relation("MovieCast")
+  Rental          Rental[]
+}
+
+model Rental {
+  id             Int       @id @default(autoincrement())
+  renter         Person    @relation(fields: [renterId], references: [id])
+  renterId       Int
+  movie          Movie     @relation(fields: [movieId], references: [id])
+  movieId        Int
+  rentalDate     DateTime
+  returnDate     DateTime
+  returnDeadline DateTime
+  lateFee        Float
+  totalAmount    Float
+  status         String // [Regular, Late, Returned]
+  createdAt      DateTime? @default(now()) @map(name: "created_at")
+  updatedAt      DateTime? @updatedAt @map(name: "updated_at")
 }
