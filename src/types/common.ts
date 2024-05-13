@@ -9,3 +9,8 @@ export interface DefaultRequest<T> extends Pagination {
   message: string
   data: T[]
 }
+
+export interface LabelAndValues {
+  label: string
+  value: string
+}

@@ -3,7 +3,7 @@ import CarouselSpacing from "@/components/shared/carousel/carousel"
 import { movies } from "./data"
 import NewMovie from "./_components/new-movie/new-movie"
 
-const Movies = (): JSX.Element => {
+export default async function Movies () {
   return (
     <>
       <NewMovie />
@@ -12,5 +12,3 @@ const Movies = (): JSX.Element => {
     </>
   )
 }
-
-export default Movies

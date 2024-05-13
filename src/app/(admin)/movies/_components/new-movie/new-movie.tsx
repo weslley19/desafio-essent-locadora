@@ -10,6 +10,7 @@ import Select from "@/components/shared/select/select"
 import { SelectItem } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import Modal from "@/components/shared/modals/modal"
+import MultiSelect from "@/components/shared/multi-select/multi-select"
 
 const NewMovie = (): JSX.Element => {
   const { hookForm, onSubmit } = useNewMovie()
@@ -32,25 +33,25 @@ const NewMovie = (): JSX.Element => {
             </div>
             <div className="flex flex-col gap-2 mb-4">
               <Label>Ano de lançamento:</Label>
-              <Input {...hookForm.register('year')} />
-              {hookForm.formState.errors.year && <span className="text-xs	text-red-600">{hookForm.formState.errors.year.message}</span>}
+              <Input {...hookForm.register('releaseYear')} />
+              {hookForm.formState.errors.releaseYear && <span className="text-xs	text-red-600">{hookForm.formState.errors.releaseYear.message}</span>}
             </div>
           </div>
 
           <div className="flex gap-6">
             <div className="flex flex-col gap-2 mb-4">
               <Label>Quantidade de cópias:</Label>
-              <Input {...hookForm.register('copies')} type="number" />
-              {hookForm.formState.errors.copies && <span className="text-xs	text-red-600">{hookForm.formState.errors.copies.message}</span>}
+              <Input {...hookForm.register('availableCopies')} type="number" />
+              {hookForm.formState.errors.availableCopies && <span className="text-xs	text-red-600">{hookForm.formState.errors.availableCopies.message}</span>}
             </div>
             <div className="flex flex-col gap-2 mb-4">
               <Label>Categoria:</Label>
-              <Select hookForm={hookForm} index="category">
-                <SelectItem value="apple">Apple</SelectItem>
+              <Select hookForm={hookForm} index="categoryId">
+                <SelectItem value="1">Comédia</SelectItem>
                 <SelectItem value="kk">Apple</SelectItem>
                 <SelectItem value="appless">Apple</SelectItem>
               </Select>
-              {hookForm.formState.errors.category && <span className="text-xs	text-red-600">{hookForm.formState.errors.category.message}</span>}
+              {hookForm.formState.errors.categoryId && <span className="text-xs	text-red-600">{hookForm.formState.errors.categoryId.message}</span>}
             </div>
           </div>
 
@@ -63,8 +64,8 @@ const NewMovie = (): JSX.Element => {
           <div className="flex gap-6">
             <div className="flex flex-col gap-2 mb-4">
               <Label>Valor da locação:</Label>
-              <Input {...hookForm.register('value')} />
-              {hookForm.formState.errors.value && <span className="text-xs	text-red-600">{hookForm.formState.errors.value.message}</span>}
+              <Input {...hookForm.register('rentalValue')} />
+              {hookForm.formState.errors.rentalValue && <span className="text-xs	text-red-600">{hookForm.formState.errors.rentalValue.message}</span>}
             </div>
             <div className="flex flex-col gap-2 mb-4">
               <Label>Imagem:</Label>
@@ -75,11 +76,11 @@ const NewMovie = (): JSX.Element => {
 
           <div className="flex flex-col gap-2 mb-4">
             <Label>Elenco:</Label>
-            <Select hookForm={hookForm} index="cast" className="w-full">
-              <SelectItem value="apple">Apple</SelectItem>
-              <SelectItem value="kk">Apple</SelectItem>
-              <SelectItem value="appless">Apple</SelectItem>
-            </Select>
+            <MultiSelect hookForm={hookForm} index="cast" options={[
+              { value: '124', label: 'UM' },
+              { value: '125', label: 'dois' },
+              { value: 'tres', label: 'tres' },
+            ]} />
             {hookForm.formState.errors.cast && <span className="text-xs	text-red-600">{hookForm.formState.errors.cast.message}</span>}
           </div>
 
