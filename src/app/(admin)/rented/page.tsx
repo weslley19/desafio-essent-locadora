@@ -1,50 +1,33 @@
-"use client"
-
-import Modal from "@/components/shared/modals/modal"
-import { useRented } from "./core/hook/useRented"
 import DataTable from "@/components/shared/data-table/data-table"
 import { TableCell, TableRow } from "@/components/ui/table"
-import { RentMovieProps } from "./core/validation/interfaces"
+import { getRented } from "./actions"
+import FormRented from "./_components/form-rented/form-rented"
 
-const Rented = (): JSX.Element => {
-  const { openModal, handleOpenCloseModal } = useRented()
-
-  const rents: RentMovieProps[] = [
-    { locator: 'Weslley', movie: 'Filme 1', withdrawal: '10/10/2021', devolution: '10/10/2021', hour: '10:00', multa: 'R$ 0,00', total: 'R$ 0,00', situation: 'Alugado' },
-    { locator: 'Weslley', movie: 'Filme 2', withdrawal: '10/10/2021', devolution: '10/10/2021', hour: '10:00', multa: 'R$ 0,00', total: 'R$ 0,00', situation: 'Alugado' },
-    { locator: 'Weslley', movie: 'Filme 3', withdrawal: '10/10/2021', devolution: '10/10/2021', hour: '10:00', multa: 'R$ 0,00', total: 'R$ 0,00', situation: 'Alugado' },
-    { locator: 'Weslley', movie: 'Filme 4', withdrawal: '10/10/2021', devolution: '10/10/2021', hour: '10:00', multa: 'R$ 0,00', total: 'R$ 0,00', situation: 'Alugado' },
-  ]
+export default async function Rented() {
+  const rented = await getRented()
 
   const Body = (): JSX.Element => (
     <>
-      {rents.map((rent, index) => (
+      {rented.data.map((rent, index) => (
         <TableRow key={index}>
-          <TableCell>{rent.locator}</TableCell>
-          <TableCell>{rent.movie}</TableCell>
-          <TableCell>{rent.withdrawal}</TableCell>
-          <TableCell>{rent.devolution}</TableCell>
-          {/* <TableCell>{rent.hour}</TableCell> */}
-          <TableCell>{rent.multa}</TableCell>
-          <TableCell>{rent.total}</TableCell>
-          <TableCell>{rent.situation}</TableCell>
+          <TableCell>{rent.renter.name}</TableCell>
+          <TableCell>{rent.movie.title}</TableCell>
+          <TableCell>{rent.rentalDate}</TableCell>
+          <TableCell>{rent.returnDate}</TableCell>
+          <TableCell>{rent.lateFee}</TableCell>
+          <TableCell>{rent.totalAmount}</TableCell>
+          <TableCell>{rent.status}</TableCell>
         </TableRow>
       ))}
     </>
   )
+
   return (
     <>
-      <Modal
-        title="Novo aluguel"
-        labelButton="Adicionar aluguel"
-        open={openModal}
-        onClose={handleOpenCloseModal}
-      >
-        ...
-      </Modal>
+      <FormRented />
 
       <DataTable
-        title="Lista de filmes alugados"
+        title="Filmes alugados"
         header={["Locador", "Filme", "Retirada", "Devolução", "Multa", "Total", "Situação"]}
         body={<Body />}
         className="mt-6"
@@ -52,5 +35,3 @@ const Rented = (): JSX.Element => {
     </>
   )
 }
-
-export default Rented

@@ -85,7 +85,7 @@ model Rental {
   rentalDate     DateTime
   returnDate     DateTime
   returnDeadline DateTime
-  lateFee        Float
+  lateFee        Float?
   totalAmount    Float
   status         String // [Regular, Late, Returned]
   createdAt      DateTime? @default(now()) @map(name: "created_at")
