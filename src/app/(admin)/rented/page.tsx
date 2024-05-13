@@ -2,6 +2,7 @@ import DataTable from "@/components/shared/data-table/data-table"
 import { TableCell, TableRow } from "@/components/ui/table"
 import { getRented } from "./actions"
 import FormRented from "./_components/form-rented/form-rented"
+import { dateBrFormat, moneyMask } from "@/lib/utils"
 
 export default async function Rented() {
   const rented = await getRented()
@@ -12,10 +13,10 @@ export default async function Rented() {
         <TableRow key={index}>
           <TableCell>{rent.renter.name}</TableCell>
           <TableCell>{rent.movie.title}</TableCell>
-          <TableCell>{rent.rentalDate}</TableCell>
-          <TableCell>{rent.returnDate}</TableCell>
-          <TableCell>{rent.lateFee}</TableCell>
-          <TableCell>{rent.totalAmount}</TableCell>
+          <TableCell>{dateBrFormat(rent.rentalDate as string)}</TableCell>
+          <TableCell>{dateBrFormat(rent.returnDate as string)}</TableCell>
+          <TableCell>R$ {moneyMask(rent.lateFee)}</TableCell>
+          <TableCell>R$ {moneyMask(rent.totalAmount)}</TableCell>
           <TableCell>{rent.status}</TableCell>
         </TableRow>
       ))}

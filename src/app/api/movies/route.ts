@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/db'
-import { CreatePerson } from '@/types/person'
 import { CreateMovie } from '@/types/movie'
 
 export async function GET() {
@@ -19,7 +18,6 @@ export async function POST(req: NextRequest) {
     title, releaseYear, image, synopsis, categoryId,
     rentalValue, availableCopies, cast
   }: CreateMovie = await req.json()
-  console.log(cast)
 
   try {
     const movieAlreadyExists = await prisma.movie.findFirst({ where: { title: title } })
@@ -27,22 +25,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'Filme já cadastrado' }, { status: 400 })
     }
 
+    const castArray = JSON.parse(cast as any)
     const movie = await prisma.movie.create({
       data: {
         title,
         releaseYear: parseInt(releaseYear),
-        image,
+        image: image as string,
         synopsis,
         rentalValue: parseInt(rentalValue),
-        availableCopies,
+        availableCopies: parseInt(availableCopies as string),
         category: { connect: { id: parseInt(categoryId) } },
-        cast: { connect: cast.map(c => ({ id: parseInt(c) })) }
+        cast: { connect: castArray.map((c: any) => ({ id: parseInt(c) })) }
       },
       include: { category: true, cast: true }
     });
     return NextResponse.json({ message: 'Filme criado com sucesso', movie }, { status: 201 })
   } catch (err) {
-    console.log(err)
     return NextResponse.json({ message: 'Erro' }, { status: 500 })
   }
 }

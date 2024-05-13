@@ -1,11 +1,11 @@
 export interface CarouselListMovies {
-  category: ECarouselListMovies
+  category: string
   movies: IMoviesCategory[]
 }
 
 interface IMoviesCategory {
   id: number
-  url: string
+  image: string
 }
 
 export enum ECarouselListMovies {

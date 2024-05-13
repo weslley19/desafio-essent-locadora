@@ -18,6 +18,9 @@ interface CarouselSpacingProps {
 const CarouselSpacing = ({ data }: CarouselSpacingProps) => {
   return (
     <>
+      {data.length === 0 && (
+        <h1 className="text-center mt-10">Nenhum filme cadastrado</h1>
+      )}
       {data.map((item, index) => (
         <Carousel key={index} className="w-full mb-10 last:mb-0">
           <h1 className="p-1 font-bold text-lg mb-3">{item.category}</h1>
@@ -28,7 +31,7 @@ const CarouselSpacing = ({ data }: CarouselSpacingProps) => {
                   <Card className="p-0">
                     <CardContent className="flex aspect-square items-center justify-center p-0">
                       <Image
-                        src={i.url}
+                        src={`/uploads/${i.image}`}
                         alt={i.id.toString()}
                         width={150}
                         height={225}

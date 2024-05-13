@@ -13,8 +13,7 @@ import Modal from "@/components/shared/modals/modal"
 import MultiSelect from "@/components/shared/multi-select/multi-select"
 
 const NewMovie = (): JSX.Element => {
-  const { hookForm, onSubmit } = useNewMovie()
-  const { openModal, handleOpenCloseModal } = useNewMovie()
+  const { hookForm, onSubmit, openModal, handleOpenCloseModal, handleFileChange } = useNewMovie()
 
   return (
     <>
@@ -69,8 +68,8 @@ const NewMovie = (): JSX.Element => {
             </div>
             <div className="flex flex-col gap-2 mb-4">
               <Label>Imagem:</Label>
-              <Input {...hookForm.register('image')} type="file" />
-              {hookForm.formState.errors.image && <span className="text-xs	text-red-600">{hookForm.formState.errors.image.message}</span>}
+              <Input {...hookForm.register('image')} onChange={handleFileChange} type="file" />
+              {hookForm.formState.errors.image && <span className="text-xs	text-red-600">{hookForm.formState.errors?.image?.message as string}</span>}
             </div>
           </div>
 
