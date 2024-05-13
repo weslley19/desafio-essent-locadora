@@ -7,7 +7,9 @@ import { CheckIcon } from "@radix-ui/react-icons"
 import Loading from "@/components/shared/loading/loading"
 import { useFormPerson } from "./core/hook/useFormUser"
 import Modal from "@/components/shared/modals/modal"
-import { usePerson } from "../core/hooks/usePerson"
+import { usePerson } from "../../core/hooks/usePerson"
+import Select from "@/components/shared/select/select"
+import { SelectItem } from "@/components/ui/select"
 
 const FormPerson = (): JSX.Element => {
   const { hookForm, onSubmit } = useFormPerson()
@@ -37,6 +39,17 @@ const FormPerson = (): JSX.Element => {
           <Label>CPF:</Label>
           <Input {...hookForm.register('cpf')} />
           {hookForm.formState.errors.cpf && <span className="text-xs	text-red-600">{hookForm.formState.errors.cpf.message}</span>}
+        </div>
+
+        <div className="flex flex-col gap-2 mb-4">
+          <Label>Tipo de usuário:</Label>
+          <Select hookForm={hookForm} index="TypePersonType">
+            <SelectItem value="1">Usuário</SelectItem>
+            <SelectItem value="2">Cliente</SelectItem>
+            <SelectItem value="3">Ator</SelectItem>
+            <SelectItem value="4">Diretor</SelectItem>
+          </Select>
+          {hookForm.formState.errors.TypePersonType && <span className="text-xs	text-red-600">{hookForm.formState.errors.TypePersonType.message}</span>}
         </div>
 
         <hr className="my-5" />

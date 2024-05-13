@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from 'react-toastify'
 
 import { CreatePersonForm, createPersonSchema, initValues } from '../validation/schema'
-import { createPerson } from '../../../actions'
+import { createPerson } from '@/app/(admin)/person/actions'
 
 export function useFormPerson() {
   const hookForm = useForm<CreatePersonForm>({
@@ -21,6 +21,7 @@ export function useFormPerson() {
     const response = await createPerson(dataToSend)
     if (response.status === 201) {
       toast.success('Pessoa cadastrada com sucesso')
+      hookForm.reset()
     } else {
       toast.error(response?.message)
     }

@@ -47,6 +47,10 @@ const nextConfig = {
         source: '/reservas-pendentes',
         destination: '/reserved',
       },
+      {
+        source: '/tipos-usuario',
+        destination: '/type-person'
+      }
     ];
   }
 };

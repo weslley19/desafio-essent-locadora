@@ -15,6 +15,10 @@ const MenuNavigation = (): JSX.Element => {
           <PersonIcon className="mr-3" />
           Pessoas
         </ListItem>
+        <ListItem href="/tipos-usuario">
+          <PersonIcon className="mr-3" />
+          Tipos de usuário
+        </ListItem>
       </GroupListItem>
       <GroupListItem title="LOCAÇÃO">
         <ListItem href="/filmes">

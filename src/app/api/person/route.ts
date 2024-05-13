@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { CreatePerson } from '@/types/person'
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const persons = await prisma.person.findMany({
-      include: { TypePersonType: true }
+      include: { TypePersonType: { include: { typePerson: true } } }
     })
     return NextResponse.json(persons)
   } catch (err) {
@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const { name, birthday, cpf }: CreatePerson = await req.json()
+  const { name, birthday, cpf, TypePersonType }: CreatePerson = await req.json()
   try {
     const cpfAlreadyExists = await prisma.person.findUnique({ where: { cpf: cpf } })
     if (cpfAlreadyExists) {
@@ -22,7 +22,15 @@ export async function POST(req: NextRequest) {
     }
 
     const person = await prisma.person.create({
-      data: { name, birthday, cpf }
+      data: {
+        name,
+        birthday,
+        cpf,
+        TypePersonType: {
+          create: { typePerson: { connect: { id: Number(TypePersonType) } } }
+        }
+      },
+      include: { TypePersonType: { include: { typePerson: true } } }
     })
     return NextResponse.json({ message: 'Pessoa criada com sucesso', person }, { status: 201 })
   } catch (err) {
