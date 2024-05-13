@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Projeto Locadora Blockbuster
 
-## Getting Started
+Uma plataforma para gerenciar uma locadora de filmes, na qual os usuários tem acesso ao painel administrativo e ao site com catálogo de filmes.
 
-First, run the development server:
+## Lista de Filmes
 
+Abaixo a tela dentro do painel administrativo
+
+![Thumbnail GitHub](https://raw.githubusercontent.com/weslley19/desafio-essent-locadora/main/dash.png)
+
+> Área acessada somente via login, na qual somente o dono e os funcionários tem acesso
+
+## 🔨 Funcionalidades do projeto
+
+Usuário logado pode:
+- Cadastrar pessoas (cliente, atores, diretores, funcionários)
+- Cadastrar categorias de filmes
+- Cadastrar filmes, com banners
+- Dashboard com faturamento da locadora
+
+![](https://github.com/alura-cursos/android-com-kotlin-personalizando-ui/raw/master/img/amostra.gif)
+
+## ✔️ Técnicas e tecnologias utilizadas
+
+- `Next JS`: Criação do layout e API com actions
+- `Prisma`: ORM para maninupalação do banco de dados e migrations
+- `Postgress`: Banco de dados
+- `TailwindCSS`: Estilizaçãod de toda a aplicação
+- `Zod`: Validação dos formulários
+- `Hook Form`: Criação dos formulários
+- `Shadcn UI`: Componentes da aplicação
+- `TypeScript`: Linguagem do projeto
+- `yarn`: Gerenciador de dependência
+
+## 📁 Acesso ao projeto
+
+Execute o seguinte comando
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/weslley19/desafio-essent-locadora.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Abrir e rodar o projeto
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Após clonar o projeto, execute o seguinte comando para instalar todas as dependências do projeto
+```bash
+yarn
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Baixados tudo, execute
+```bash
+npx prisma generate
+```
+Isso irá atualizar o gerenciador do prisma
 
-## Learn More
+Feito isto, está tudo pronto pra começar, o banco fica hospedado online, então não precisa baixar nada.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Caso queira, pode usar o prisma studio:
+```bash
+npx prisma studio
+```
+Irá abrir um cliente para visualizar todas as tabelas
