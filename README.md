@@ -18,7 +18,7 @@ Usuário logado pode:
 - Cadastrar filmes, com banners
 - Dashboard com faturamento da locadora
 
-![](https://github.com/alura-cursos/android-com-kotlin-personalizando-ui/raw/master/img/amostra.gif)
+<!-- ![](https://github.com/alura-cursos/android-com-kotlin-personalizando-ui/raw/master/img/amostra.gif) -->
 
 ## ✔️ Técnicas e tecnologias utilizadas
 
