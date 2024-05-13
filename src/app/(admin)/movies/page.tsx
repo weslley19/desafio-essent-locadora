@@ -1,25 +1,12 @@
-"use client"
-
 import CarouselSpacing from "@/components/shared/carousel/carousel"
-import Modal from "@/components/shared/modals/modal"
-import { useNewMovie } from "./new-movie/core/hook/useNewMovie"
-import NewMovie from "./new-movie/new-movie"
 
 import { movies } from "./data"
+import NewMovie from "./_components/new-movie/new-movie"
 
 const Movies = (): JSX.Element => {
-  const { openModal, handleOpenCloseModal } = useNewMovie()
-
   return (
     <>
-      <Modal
-        title="Novo filme"
-        labelButton="Adicionar filme"
-        open={openModal}
-        onClose={handleOpenCloseModal}
-      >
-        <NewMovie />
-      </Modal>
+      <NewMovie />
 
       <CarouselSpacing data={movies} />
     </>

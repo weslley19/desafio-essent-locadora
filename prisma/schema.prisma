@@ -21,50 +21,59 @@ datasource db {
 
 // Definition of the Person model
 model Person {
-  id             Int               @id @default(autoincrement())
+  id             Int              @id @default(autoincrement())
   name           String
   birthday       DateTime
-  cpf            String            @unique
-  createdAt      DateTime?         @default(now()) @map(name: "created_at")
-  updatedAt      DateTime?         @updatedAt @map(name: "updated_at")
+  cpf            String           @unique
+  createdAt      DateTime?        @default(now()) @map(name: "created_at")
+  updatedAt      DateTime?        @updatedAt @map(name: "updated_at")
   TypePersonType TypePersonType[]
-  movies         Movie[]           @relation("MovieCast")
+  movies         Movie[]          @relation("MovieCast")
   Rental         Rental[]
 }
 
 // Definition of the TypePerson model
 model TypePerson {
-  id             Int               @id @default(autoincrement())
+  id             Int              @id @default(autoincrement())
   name           String
-  createdAt      DateTime?         @default(now()) @map(name: "created_at")
-  updatedAt      DateTime?         @updatedAt @map(name: "updated_at")
+  createdAt      DateTime?        @default(now()) @map(name: "created_at")
+  updatedAt      DateTime?        @updatedAt @map(name: "updated_at")
   TypePersonType TypePersonType[]
 }
 
 // Definition of the TypePersonType model
 model TypePersonType {
-  id           Int         @id @default(autoincrement())
-  person       Person      @relation(fields: [personId], references: [id])
+  id           Int        @id @default(autoincrement())
+  person       Person     @relation(fields: [personId], references: [id])
   personId     Int
-  typePerson   TypePerson  @relation(fields: [typePersonId], references: [id])
+  typePerson   TypePerson @relation(fields: [typePersonId], references: [id])
   typePersonId Int
-  createdAt    DateTime?   @default(now()) @map(name: "created_at")
-  updatedAt    DateTime?   @updatedAt @map(name: "updated_at")
+  createdAt    DateTime?  @default(now()) @map(name: "created_at")
+  updatedAt    DateTime?  @updatedAt @map(name: "updated_at")
 }
 
 model Movie {
-  id              Int       @id @default(autoincrement())
+  id              Int           @id @default(autoincrement())
   title           String
   releaseYear     Int
   image           String?
   synopsis        String
-  category        String
+  categoryId      Int
+  category        MovieCategory @relation(fields: [categoryId], references: [id])
   rentalValue     Float
   availableCopies Int
-  createdAt       DateTime? @default(now()) @map(name: "created_at")
-  updatedAt       DateTime? @updatedAt @map(name: "updated_at")
-  cast            Person[]  @relation("MovieCast")
+  createdAt       DateTime?     @default(now()) @map(name: "created_at")
+  updatedAt       DateTime?     @updatedAt @map(name: "updated_at")
+  cast            Person[]      @relation("MovieCast")
   Rental          Rental[]
+}
+
+model MovieCategory {
+  id        Int       @id @default(autoincrement())
+  name      String
+  createdAt DateTime? @default(now()) @map(name: "created_at")
+  updatedAt DateTime? @updatedAt @map(name: "updated_at")
+  movies    Movie[]
 }
 
 model Rental {

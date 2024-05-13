@@ -50,6 +50,10 @@ const nextConfig = {
       {
         source: '/tipos-usuario',
         destination: '/type-person'
+      },
+      {
+        source: '/filmes/categorias',
+        destination: '/movies/categories'
       }
     ];
   }

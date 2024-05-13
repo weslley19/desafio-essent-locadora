@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 
 import { CreatePersonForm, createPersonSchema, initValues } from '../validation/schema'
 import { createPerson } from '@/app/(admin)/person/actions'
+import { getTypesPerson } from '@/app/(admin)/type-person/actions'
 
 export function useFormPerson() {
   const hookForm = useForm<CreatePersonForm>({
@@ -27,8 +28,14 @@ export function useFormPerson() {
     }
   }
 
+  const handleGetTypesPerson = async () => {
+    const response = await getTypesPerson()
+    return response.data
+  }
+
   return {
     hookForm,
-    onSubmit
+    onSubmit,
+    handleGetTypesPerson
   }
 }

@@ -1,7 +1,6 @@
 import ListItem from "../sidebar/list-item"
-import Link from "next/link"
 import GroupListItem from "../sidebar/group-list-item"
-import { ClockIcon, DesktopIcon, PersonIcon, PlayIcon, TokensIcon } from "@radix-ui/react-icons"
+import { ArchiveIcon, ClockIcon, DesktopIcon, PersonIcon, PlayIcon, TokensIcon } from "@radix-ui/react-icons"
 
 const MenuNavigation = (): JSX.Element => {
   return (
@@ -18,6 +17,10 @@ const MenuNavigation = (): JSX.Element => {
         <ListItem href="/tipos-usuario">
           <PersonIcon className="mr-3" />
           Tipos de usuário
+        </ListItem>
+        <ListItem href="/filmes/categorias">
+          <ArchiveIcon className="mr-3" />
+          Categorias
         </ListItem>
       </GroupListItem>
       <GroupListItem title="LOCAÇÃO">

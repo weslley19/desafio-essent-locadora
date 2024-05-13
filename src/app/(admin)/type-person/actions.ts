@@ -19,7 +19,7 @@ export async function getTypesPerson(): Promise<AxiosResponse<TypesPerson[]>> {
 export async function createTypePerson(payload: CreateTypesPerson) {
   try {
     const response = await server.post(endpoint, payload)
-    revalidatePath('/types-person')
+    revalidatePath(endpoint)
     return {
       data: response.data,
       status: response.status

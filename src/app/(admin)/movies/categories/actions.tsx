@@ -1,13 +1,13 @@
 "use server"
 
 import { server } from "@/service/api"
-import { CreatePerson, Person } from "@/types/person"
+import { Category, CreateCategory } from "@/types/categories"
 import { AxiosResponse } from "axios"
 import { revalidatePath } from "next/cache"
 
-const endpoint = '/person'
+const endpoint = '/categories'
 
-export async function getPerson(): Promise<AxiosResponse<Person[]>> {
+export async function getCategories(): Promise<AxiosResponse<Category[]>> {
   try {
     const response = await server.get(endpoint)
     return response
@@ -16,7 +16,7 @@ export async function getPerson(): Promise<AxiosResponse<Person[]>> {
   }
 }
 
-export async function createPerson(payload: CreatePerson) {
+export async function createCategory(payload: CreateCategory) {
   try {
     const response = await server.post(endpoint, payload)
     revalidatePath(endpoint)
