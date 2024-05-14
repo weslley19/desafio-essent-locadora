@@ -5,6 +5,8 @@ import Header from "@/components/shared/header/header";
 
 import 'react-toastify/dist/ReactToastify.css';
 import MenuNavigation from "@/components/shared/menu-navigation/menu-navigation";
+import { Button } from "@/components/ui/button";
+import logout from "./actions";
 
 export default function RootLayout({ children }: Readonly<{ children?: React.ReactNode }>) {
   return (
@@ -22,6 +24,9 @@ export default function RootLayout({ children }: Readonly<{ children?: React.Rea
             <div className="flex font-extra">
               <SideBar>
                 <MenuNavigation />
+                <form action={logout} className="absolute w-full p-6 bottom-0">
+                  <Button className="w-full">Sair</Button>
+                </form>
               </SideBar>
               <div className="w-full flex flex-col">
                 <Header />

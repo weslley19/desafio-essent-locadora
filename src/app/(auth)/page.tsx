@@ -1,6 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { auth } from "../../../auth";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const session = auth()
+  console.log(session)
+  if (!session) {
+    redirect('/site')
+  }
+
   return (
     <div className="grid lg:grid-cols-3 gap-5 sm:grid-cols-1 md:grid-cols-1">
       <Card className="bg-container hover:border-slate-50">

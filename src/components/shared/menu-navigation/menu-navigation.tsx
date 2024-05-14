@@ -1,3 +1,5 @@
+"use server"
+
 import ListItem from "../sidebar/list-item"
 import GroupListItem from "../sidebar/group-list-item"
 import { ArchiveIcon, ClockIcon, DesktopIcon, PersonIcon, PlayIcon, TokensIcon } from "@radix-ui/react-icons"
@@ -32,10 +34,10 @@ const MenuNavigation = (): JSX.Element => {
           <DesktopIcon className="mr-3" />
           Alugados
         </ListItem>
-        <ListItem href="/reservas-pendentes">
+        {/* <ListItem href="/reservas-pendentes">
           <ClockIcon className="mr-3" />
           Pedidos
-        </ListItem>
+        </ListItem> */}
       </GroupListItem>
     </>
   )
