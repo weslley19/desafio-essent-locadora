@@ -6,6 +6,7 @@ import { getRented } from "./rented/actions";
 
 export default async function Home() {
   const session = auth()
+  console.log(session)
   if (!session) {
     redirect('/site')
   }

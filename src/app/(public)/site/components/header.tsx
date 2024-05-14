@@ -23,7 +23,7 @@ const Header = (): JSX.Element => {
       />
 
       <Button className="mr-20" variant={'secondary'}>
-        <Link href={'/api/auth/signin'}>Entrar</Link>
+        <Link href={'/autenticar'}>Entrar</Link>
       </Button>
     </header>
   )

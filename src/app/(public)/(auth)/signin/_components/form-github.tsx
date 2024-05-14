@@ -4,6 +4,7 @@ import { loginGithub } from "../actions";
 
 export default async function FormGithub () {
   const session = await auth()
+  console.log(session)
   if (session) {
     redirect('/')
   }
@@ -15,7 +16,7 @@ export default async function FormGithub () {
         await signIn("github")
       }}
     >
-      <button type="submit">Signin with GitHub</button>
+      <button type="submit">Entrar com GitHub</button>
     </form>
   )
 }

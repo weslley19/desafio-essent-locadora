@@ -14,7 +14,6 @@ export function useFormRented() {
   })
 
   const onSubmit: SubmitHandler<CreateRentForm> = async (data) => {
-    console.log(data)
     const response = await createRental(data as any)
     if (response.status === 201) {
       toast.success('Aluguel cadastrado com sucesso')

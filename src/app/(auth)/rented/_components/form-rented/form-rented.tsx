@@ -44,44 +44,44 @@ const FormRented = (): JSX.Element => {
           {hookForm.formState.errors.movieId && <span className="text-xs	text-red-600">{hookForm.formState.errors.movieId.message}</span>}
         </div>
 
-        <div className="flex gap-6">
-          <div className="flex flex-col gap-2 mb-4">
-            <Label>Retirada:</Label>
-            <Input {...hookForm.register('rentalDate')} />
-            {hookForm.formState.errors.rentalDate && <span className="text-xs	text-red-600">{hookForm.formState.errors.rentalDate.message}</span>}
-          </div>
+        <div className="flex flex-col gap-2 mb-4">
+          <Label>Retirada:</Label>
+          <Input {...hookForm.register('rentalDate')} type="datetime-local" />
+          {hookForm.formState.errors.rentalDate && <span className="text-xs	text-red-600">{hookForm.formState.errors.rentalDate.message}</span>}
+        </div>
 
-          <div className="flex flex-col gap-2 mb-4">
-            <Label>Devolução:</Label>
-            <Input {...hookForm.register('returnDate')} />
-            {hookForm.formState.errors.returnDate && <span className="text-xs	text-red-600">{hookForm.formState.errors.returnDate.message}</span>}
-          </div>
+        <div className="flex flex-col gap-2 mb-4">
+          <Label>Devolução:</Label>
+          <Input {...hookForm.register('returnDate')} type="datetime-local" />
+          {hookForm.formState.errors.returnDate && <span className="text-xs	text-red-600">{hookForm.formState.errors.returnDate.message}</span>}
         </div>
 
         <div className="flex gap-6">
-          <div className="flex flex-col gap-2 mb-4">
+          {/* <div className="flex flex-col gap-2 mb-4">
             <Label>Multa:</Label>
             <Input {...hookForm.register('lateFee')} />
             {hookForm.formState.errors.lateFee &&
               <span className="text-xs	text-red-600">{hookForm.formState.errors.lateFee.message}</span>}
-          </div>
+          </div> */}
 
           <div className="flex flex-col gap-2 mb-4">
             <Label>Total:</Label>
             <Input {...hookForm.register('totalAmount')} />
             {hookForm.formState.errors.totalAmount && <span className="text-xs	text-red-600">{hookForm.formState.errors.totalAmount.message}</span>}
           </div>
+
+          <div className="flex flex-col gap-2 mb-4">
+            <Label>Situação:</Label>
+            <Select hookForm={hookForm} index="status">
+              <SelectItem value="1">Regular</SelectItem>
+              <SelectItem value="2">Atrasado</SelectItem>
+              <SelectItem value="3">Entregue</SelectItem>
+            </Select>
+            {hookForm.formState.errors.status && <span className="text-xs	text-red-600">{hookForm.formState.errors.status.message}</span>}
+          </div>
         </div>
 
-        <div className="flex flex-col gap-2 mb-4">
-          <Label>Situação:</Label>
-          <Select hookForm={hookForm} index="status">
-            <SelectItem value="1">Regular</SelectItem>
-            <SelectItem value="2">Atrasado</SelectItem>
-            <SelectItem value="3">Entregue</SelectItem>
-          </Select>
-          {hookForm.formState.errors.status && <span className="text-xs	text-red-600">{hookForm.formState.errors.status.message}</span>}
-        </div>
+
 
         <hr className="my-5" />
 
