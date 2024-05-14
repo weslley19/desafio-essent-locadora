@@ -36,14 +36,14 @@ export async function POST(req: NextRequest) {
 
     const rent = await prisma.rental.create({
       data: {
-        renterId: 124,
-        movieId: 1,
-        lateFee: 0, // Defina um valor padrão para lateFee
-        rentalDate: "1999-11-10T00:00:00.000Z", // Use o formato de data ISO 8601
-        returnDate: "1999-11-10T00:00:00.000Z", // Use o formato de data ISO 8601
-        returnDeadline: "1999-11-10T00:00:00.000Z", // Forneça uma data válida para returnDeadline
-        status: "Regular", // Use uma das opções válidas para status
-        totalAmount: 10
+        renter: { connect: { id: parseInt(renterId) } },
+        movie: { connect: { id: parseInt(movieId) } },
+        lateFee: parseInt(lateFee),
+        rentalDate,
+        returnDate,
+        returnDeadline,
+        status,
+        totalAmount: parseInt(totalAmount)
       }
     })
     return NextResponse.json({ message: 'Aluguel criado com sucesso', rent }, { status: 201 })
