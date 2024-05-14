@@ -8,7 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { CarouselListMovies } from "@/app/(admin)/movies/core/validation/interfaces"
+import { CarouselListMovies } from "@/app/(auth)/movies/core/validation/interfaces"
 import Image from "next/image"
 
 interface CarouselSpacingProps {
@@ -32,8 +32,8 @@ const CarouselSpacing = ({ data, className = '' }: CarouselSpacingProps) => {
                   <Card className={`p-0 ${className}`}>
                     <CardContent className="flex aspect-square items-center justify-center p-0">
                       <Image
-                        // src={`/uploads/${i.image}`}
-                        src={`${i.image}`}
+                        src={`/uploads/${i.image}`}
+                        // src={`${i.image}`}
                         alt={i.id.toString()}
                         width={150}
                         height={225}

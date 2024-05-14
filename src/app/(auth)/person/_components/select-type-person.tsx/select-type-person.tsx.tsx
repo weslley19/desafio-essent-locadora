@@ -1,4 +1,4 @@
-import { getTypesPerson } from "@/app/(admin)/type-person/actions"
+import { getTypesPerson } from "@/app/(auth)/type-person/actions"
 import Select from "@/components/shared/select/select"
 import { SelectItem } from "@/components/ui/select"
 

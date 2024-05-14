@@ -1,4 +1,4 @@
-import { getPerson } from "@/app/(admin)/person/actions"
+import { getPerson } from "@/app/(auth)/person/actions"
 import { getCategories } from "../../categories/actions"
 import Forms from "./forms"
 

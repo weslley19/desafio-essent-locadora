@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from 'react-toastify'
 
 import { CreateRentForm, createRentSchema, initValues } from '../validation/schema'
-import { createRental } from '@/app/(admin)/rented/actions'
+import { createRental } from '@/app/(auth)/rented/actions'
 
 export function useFormRented() {
   const hookForm = useForm<CreateRentForm>({

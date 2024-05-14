@@ -42,7 +42,7 @@ export async function createMovie(payload: FormData) {
       try {
         const bytes = await file.arrayBuffer()
         const buffer = Buffer.from(bytes)
-        const destination = join(process.cwd(), 'public', 'uploads')
+        const destination = join(process.cwd(), 'public')
         const path = join(destination, filename);
         await writeFile(path, buffer)
       } catch (err) {

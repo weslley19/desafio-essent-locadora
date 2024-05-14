@@ -5,8 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from 'react-toastify'
 
 import { CreatePersonForm, createPersonSchema, initValues } from '../validation/schema'
-import { createPerson } from '@/app/(admin)/person/actions'
-import { getTypesPerson } from '@/app/(admin)/type-person/actions'
+import { createPerson } from '@/app/(auth)/person/actions'
+import { getTypesPerson } from '@/app/(auth)/type-person/actions'
 
 export function useFormPerson() {
   const hookForm = useForm<CreatePersonForm>({

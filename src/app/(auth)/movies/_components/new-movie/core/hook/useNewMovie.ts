@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { NewMovieForm, initValues, newMovieSchema } from "../validation/schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useState } from "react"
-import { createMovie } from "@/app/(admin)/movies/action"
+import { createMovie } from "@/app/(auth)/movies/action"
 import { toast } from "react-toastify"
 import { CreateMovie } from "@/types/movie"
 

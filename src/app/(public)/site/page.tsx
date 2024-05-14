@@ -1,7 +1,7 @@
 import CarouselSpacing from "@/components/shared/carousel/carousel"
 import Banner from "./components/banner"
 import Header from "./components/header"
-import { movies } from "@/app/(admin)/movies/data"
+import { movies } from "@/app/(auth)/movies/data"
 
 const Site = (): JSX.Element => {
   return (
