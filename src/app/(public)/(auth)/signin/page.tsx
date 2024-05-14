@@ -1,5 +1,3 @@
-"use client"
-
 import FormGithub from "./_components/form-github"
 
 const Login = (): JSX.Element => {
