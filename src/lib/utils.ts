@@ -86,3 +86,25 @@ export const moneyMask = (
 
   return formatNumber(value)
 }
+
+/**
+ * Pega um objeto e serializa ele na forma de query string
+ * @param {object} params - O objeto que quer serializar
+ * @returns {string} - A query string
+ */
+export const serializeQueryParams = (params: any): string => {
+  const esc = encodeURIComponent
+  return Object.keys(params)
+    .map((keyParam) => {
+      if (Array.isArray(params[keyParam])) {
+        return params[keyParam]
+          .map((value: any, index: number) => {
+            return esc(keyParam) + '[]=' + esc(value)
+          })
+          .join('&')
+      } else {
+        return esc(keyParam) + '=' + esc(params[keyParam])
+      }
+    })
+    .join('&')
+}

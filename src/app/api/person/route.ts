@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { CreatePerson } from '@/types/person'
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const teste = await req
+  console.log(teste)
+
   try {
     const persons = await prisma.person.findMany({
       include: { TypePersonType: { include: { typePerson: true } } }

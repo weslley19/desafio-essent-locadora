@@ -16,7 +16,7 @@ import Register from "../signup/page"
 
 const Authentication = () => {
   return (
-    <Tabs defaultValue="signin" className="w-[400px] absolute top-1/2	left-1/2	transform -translate-x-1/2 -translate-y-1/2">
+    <Tabs defaultValue="signin" className="w-[400px] bg-aside absolute top-1/2	left-1/2	transform -translate-x-1/2 -translate-y-1/2">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="signin">Entrar</TabsTrigger>
         <TabsTrigger value="signup">Cadastrar-se</TabsTrigger>

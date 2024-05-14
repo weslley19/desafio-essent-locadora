@@ -1,19 +1,17 @@
+import CarouselSpacing from "@/components/shared/carousel/carousel"
 import Banner from "./components/banner"
 import Header from "./components/header"
+import { movies } from "@/app/(admin)/movies/data"
 
 const Site = (): JSX.Element => {
   return (
-    <div className="relative">
+    <div className="bg-neutral-950 min-h-screen text-white">
       <Header />
 
       <Banner />
 
-      <div className="p-20 flex gap-3">
-        <div className="w-40 h-60 rounded-lg bg-red-700 absolute bottom-28">..</div>
-        <div className="w-40 h-60 rounded-lg bg-red-700 absolute bottom-28">..</div>
-        <div className="w-40 h-60 rounded-lg bg-red-700 absolute bottom-28">..</div>
-        <div className="w-40 h-60 rounded-lg bg-red-700 absolute bottom-28">..</div>
-        <div className="w-40 h-60 rounded-lg bg-red-700 absolute bottom-28">..</div>
+      <div className="pl-20 pb-20">
+        <CarouselSpacing data={movies} className="w-60" />
       </div>
     </div>
   )

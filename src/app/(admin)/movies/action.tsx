@@ -21,11 +21,14 @@ export async function getMovies(): Promise<AxiosResponse<Movie[]>> {
 
 export async function createMovie(payload: FormData) {
   try {
-    const fileName = payload.get('image') as File
+    const file = payload.get('image') as File
+    const timestamp = new Date().getTime()
+    const filename = `${timestamp}-${file.name}`
+
     const dataToSend = {
       title: payload.get('title'),
       releaseYear: payload.get('releaseYear'),
-      image: fileName.name,
+      image: filename,
       synopsis: payload.get('synopsis'),
       categoryId: payload.get('categoryId'),
       rentalValue: payload.get('rentalValue'),
@@ -35,14 +38,12 @@ export async function createMovie(payload: FormData) {
 
     const response = await server.post(endpoint, dataToSend)
 
-    const file: File | null = payload.get('image') as File
     if (file) {
       try {
         const bytes = await file.arrayBuffer()
         const buffer = Buffer.from(bytes)
-        const timestamp = new Date().getTime()
         const destination = join(process.cwd(), 'public', 'uploads')
-        const path = join(destination, `${timestamp}-${file.name}`);
+        const path = join(destination, filename);
         await writeFile(path, buffer)
       } catch (err) {
         toast.warning('Erro ao salvar imagem do filme! Tente novamente')

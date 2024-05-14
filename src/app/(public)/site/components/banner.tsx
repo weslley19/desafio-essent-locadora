@@ -1,12 +1,18 @@
-const Banner = (): JSX.Element => {
+import Image from 'next/image'
+
+interface BannerProps {
+  children?: React.ReactNode
+}
+
+const Banner = ({ children }: BannerProps): JSX.Element => {
   return (
-    <div>
-      <img
-        className="h-svh	 w-full bg-cover	"
-        src="https://images5.alphacoders.com/913/913734.jpg"
-        alt=""
-      />
-    </div>
+    <Image
+      src={'https://images5.alphacoders.com/913/913734.jpg'}
+      alt="Netflix"
+      className="h-svh w-full bg-cover"
+      width={5000}
+      height={5000}
+    />
   )
 }
 

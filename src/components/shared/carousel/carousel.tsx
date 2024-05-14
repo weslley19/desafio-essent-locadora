@@ -13,9 +13,10 @@ import Image from "next/image"
 
 interface CarouselSpacingProps {
   data: CarouselListMovies[]
+  className?: string
 }
 
-const CarouselSpacing = ({ data }: CarouselSpacingProps) => {
+const CarouselSpacing = ({ data, className = '' }: CarouselSpacingProps) => {
   return (
     <>
       {data.length === 0 && (
@@ -28,10 +29,11 @@ const CarouselSpacing = ({ data }: CarouselSpacingProps) => {
             {item.movies.map((i) => (
               <CarouselItem key={i.id} className="pl-1 md:basis-1/4 lg:basis-1/5">
                 <div className="p-1">
-                  <Card className="p-0">
+                  <Card className={`p-0 ${className}`}>
                     <CardContent className="flex aspect-square items-center justify-center p-0">
                       <Image
-                        src={`/uploads/${i.image}`}
+                        // src={`/uploads/${i.image}`}
+                        src={`${i.image}`}
                         alt={i.id.toString()}
                         width={150}
                         height={225}

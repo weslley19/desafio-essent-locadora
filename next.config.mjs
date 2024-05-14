@@ -7,6 +7,18 @@ const nextConfig = {
         hostname: 'media.themoviedb.org',
         port: '',
         pathname: '/t/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.freepnglogos.com',
+        port: '',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images5.alphacoders.com',
+        port: '',
+        pathname: '/913/**',
       }
     ]
   },
