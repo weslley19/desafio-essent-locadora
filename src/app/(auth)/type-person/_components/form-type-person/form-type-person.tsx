@@ -4,10 +4,9 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { CheckIcon } from "@radix-ui/react-icons"
-import Loading from "@/components/shared/loading/loading"
-import Modal from "@/components/shared/modals/modal"
 import { useFormTypePerson } from "./hook/useFormTypePerson"
 import { useTypePerson } from "../../core/hook/useTypePerson"
+import Modal from "@/components/modal"
 
 const FormTypePerson = (): JSX.Element => {
   const { hookForm, onSubmit } = useFormTypePerson()
@@ -33,7 +32,7 @@ const FormTypePerson = (): JSX.Element => {
           <Button variant={"default"} disabled={hookForm.formState.isSubmitting}>
             <CheckIcon className="mr-2" />
             Confirmar
-            {hookForm.formState.isSubmitting && <Loading />}
+            {hookForm.formState.isSubmitting && <span>...</span>}
           </Button>
         </div>
       </form>
