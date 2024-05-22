@@ -1,18 +1,21 @@
 "use server"
 
 import { server } from "@/service/api"
+import { DefaultRequest } from "@/types/common"
 import { CreateRental, Rental } from "@/types/rented"
 import { AxiosResponse } from "axios"
 import { revalidatePath } from "next/cache"
 
 const endpoint = '/rented'
 
-export async function getRented(): Promise<AxiosResponse<Rental[]>> {
+export async function getRented() {
   try {
-    const response = await server.get(endpoint)
-    return response
+    const response = await server.get<DefaultRequest<Rental[]>>(endpoint)
+    if (response.status === 200) {
+      return response.data.data
+    }
   } catch (err) {
-    throw new Error('Error')
+    return null
   }
 }
 

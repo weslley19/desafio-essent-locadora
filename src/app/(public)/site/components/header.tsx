@@ -22,7 +22,7 @@ const Header = (): JSX.Element => {
         height={100}
       />
 
-      <Button className="mr-20" variant={'secondary'}>
+      <Button className="mr-20">
         <Link href={'/autenticar'}>Entrar</Link>
       </Button>
     </header>

@@ -22,10 +22,11 @@ export const newMovieSchema = z.object({
   // )
   ,
   synopsis: z.string().min(30, 'Mínimo de 30 caracteres').max(255, 'Máximo de 255 caracteres'),
-  cast: z.array(z.string().min(1, 'Máximo de 1 caracteres')),
+  cast: z.array(z.number()),
   categoryId: z.string().min(1, 'Mínimo de 1 caracteres'),
   rentalValue: z.string().min(1, 'Mínimo de 1 caracteres'),
   availableCopies: z.string().min(1, 'Mínimo de 1 caracteres'),
+  directorId: z.string().min(1, 'Mínimo de 1 caracteres'),
 })
 
 export type NewMovieForm = z.infer<typeof newMovieSchema>
@@ -38,5 +39,6 @@ export const initValues = {
   cast: [],
   categoryId: '',
   rentalValue: '',
-  availableCopies: ''
+  availableCopies: '',
+  directorId: ''
 }

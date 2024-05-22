@@ -1,5 +1,4 @@
 import { MovieCategory } from "@prisma/client"
-import { Person } from "./person"
 
 export interface Movie {
   id: number
@@ -12,9 +11,10 @@ export interface Movie {
   rentalValue: string
   availableCopies: number | string
   // cast: Person[]
-  cast: string[]
+  cast: string[] | number[] | Array<{ id: number | string, label: string, value: string }>
   createdAt?: string
   updatedAt?: string
+  directorId: string | number
 }
 
 export interface CreateMovie extends Omit<Movie, 'id'> {}

@@ -8,6 +8,7 @@ export const createRentSchema = z.object({
   returnDeadline: z.string(),
   lateFee: z.string(),
   totalAmount: z.string().min(1, 'Mínimo de 1 caracteres'),
+  valueMovie: z.string(),
   status: z.string().min(1, 'Mínimo de 1 caracteres')
 })
 
@@ -21,5 +22,6 @@ export const initValues = {
   returnDeadline: '',
   lateFee: '0',
   totalAmount: '',
+  valueMovie: '',
   status: ''
 }

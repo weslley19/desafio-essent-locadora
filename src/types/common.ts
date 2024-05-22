@@ -1,16 +1,9 @@
-export interface Pagination {
-  page: number
-  totalPage: number
-  perPage: number
-  total: number
-}
-
-export interface DefaultRequest<T> extends Pagination {
+export interface DefaultRequest<T> {
   message: string
-  data: T[]
+  data: T
 }
 
-export interface LabelAndValues {
+export interface LabelAndValue {
   label: string
   value: string
 }

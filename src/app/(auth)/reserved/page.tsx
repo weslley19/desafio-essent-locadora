@@ -2,8 +2,8 @@
 
 import { TableCell, TableRow } from "@/components/ui/table"
 import { ReservedMovieProps } from "./core/validation/interfaces"
-import DataTable from "@/components/shared/data-table/data-table"
 import { Badge } from "@/components/ui/badge"
+import DataTable from "@/components/data-table"
 
 const Reserved = (): JSX.Element => {
   const rents: ReservedMovieProps[] = [
@@ -35,7 +35,6 @@ const Reserved = (): JSX.Element => {
         title="Pedidos de reserva "
         header={["Locador", "Filme", "Retirada", "Devolução", "Total", "Situação"]}
         body={<Body />}
-        className="mt-6"
       />
     </>
   )

@@ -1,6 +1,7 @@
 "use server"
 
 import { server } from "@/service/api"
+import { DefaultRequest } from "@/types/common"
 import { Movie } from "@/types/movie"
 import { AxiosResponse } from "axios"
 import { writeFile } from "fs/promises"
@@ -10,12 +11,14 @@ import { toast } from "react-toastify"
 
 const endpoint = '/movies'
 
-export async function getMovies(): Promise<AxiosResponse<Movie[]>> {
+export async function getMovies() {
   try {
-    const response = await server.get(endpoint)
-    return response
+    const response = await server.get<DefaultRequest<Movie[]>>(endpoint)
+    if (response.status === 200) {
+      return response.data.data
+    }
   } catch (err) {
-    throw new Error('Error')
+    return null
   }
 }
 
@@ -33,7 +36,8 @@ export async function createMovie(payload: FormData) {
       categoryId: payload.get('categoryId'),
       rentalValue: payload.get('rentalValue'),
       availableCopies: payload.get('availableCopies'),
-      cast: payload.get('cast')
+      cast: payload.get('cast'),
+      directorId: payload.get('directorId'),
     }
 
     const response = await server.post(endpoint, dataToSend)

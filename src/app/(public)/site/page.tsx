@@ -1,9 +1,16 @@
-import CarouselSpacing from "@/components/shared/carousel/carousel"
+import CarouselSpacing from "@/components/carousel"
 import Banner from "./components/banner"
 import Header from "./components/header"
-import { movies } from "@/app/(auth)/movies/data"
+import { useMovie } from "@/app/(auth)/movies/core/hook/useMovie"
+import { getMovies } from "@/app/(auth)/movies/action"
+import { Movie } from "@/types/movie"
+import { useSite } from "./hook/useSite"
 
-const Site = (): JSX.Element => {
+export default async function Site() {
+  const { handleFilterMoviesByCategory } = useMovie()
+  const movies = await getMovies()
+  const moviesByCategory = handleFilterMoviesByCategory(movies as Movie[])
+
   return (
     <div className="bg-neutral-950 min-h-screen text-white">
       <Header />
@@ -11,10 +18,8 @@ const Site = (): JSX.Element => {
       <Banner />
 
       <div className="pl-20 pb-20">
-        <CarouselSpacing data={movies} className="w-60" />
+        <CarouselSpacing data={moviesByCategory} className="w-60" />
       </div>
     </div>
   )
 }
-
-export default Site

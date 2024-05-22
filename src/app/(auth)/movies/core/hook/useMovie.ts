@@ -5,7 +5,7 @@ export function useMovie() {
   const handleFilterMoviesByCategory = (moviesByCategory: Movie[]): CarouselListMovies[] => {
     let moviesGroupedByCategory: CarouselListMovies[] = []
 
-    moviesByCategory.map((movie) => {
+    moviesByCategory?.map((movie) => {
       const category = movie?.category?.name
       const index = moviesGroupedByCategory.findIndex((item) => item.category === category)
 

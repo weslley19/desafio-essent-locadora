@@ -3,14 +3,25 @@ import prisma from '@/lib/db'
 import { CreatePerson } from '@/types/person'
 
 export async function GET(req: NextRequest) {
-  const teste = await req
-  console.log(teste)
+  const { searchParams } = new URL(req.url)
+  const id = searchParams.get('id') as string
 
   try {
+    if (id) {
+      const persons = await prisma.person.findMany({
+        where: {
+          TypePersonType: {
+            some: { typePerson: { id: parseInt(id) } }
+          }
+        },
+        include: { TypePersonType: { include: { typePerson: true } } }
+      })
+      return NextResponse.json({ message: 'Pessoas encontradas com sucesso', data: persons }, { status: 200 })
+    }
     const persons = await prisma.person.findMany({
       include: { TypePersonType: { include: { typePerson: true } } }
     })
-    return NextResponse.json(persons)
+    return NextResponse.json({ message: 'Pessoas encontradas com sucesso', data: persons }, { status: 200 })
   } catch (err) {
     return NextResponse.json({ message: 'Erro' }, { status: 400 })
   }
@@ -27,7 +38,7 @@ export async function POST(req: NextRequest) {
     const person = await prisma.person.create({
       data: {
         name,
-        birthday,
+        birthday: new Date(birthday),
         cpf,
         TypePersonType: {
           create: { typePerson: { connect: { id: Number(TypePersonType) } } }

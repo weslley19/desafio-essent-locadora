@@ -2,19 +2,21 @@
 
 import { serializeQueryParams } from "@/lib/utils"
 import { server } from "@/service/api"
+import { DefaultRequest } from "@/types/common"
 import { CreatePerson, Person } from "@/types/person"
-import { AxiosResponse } from "axios"
 import { revalidatePath } from "next/cache"
 
 const endpoint = '/person'
 
-export async function getPerson(params: object  = {}): Promise<AxiosResponse<Person[]>> {
+export async function getPerson(params: object = {}) {
   try {
-    const queryParams = serializeQueryParams({...params})
-    const response = await server.get(`${endpoint}?${queryParams}`)
-    return response
+    const queryParams = serializeQueryParams(params)
+    const response = await server.get<DefaultRequest<Person[]>>(`${endpoint}?${queryParams}`)
+    if (response.status === 200) {
+      return response.data.data
+    }
   } catch (err) {
-    throw new Error('Error')
+    return null
   }
 }
 

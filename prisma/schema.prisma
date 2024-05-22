@@ -9,14 +9,14 @@
 // npx prisma migrate dev --name added_job_title  rodar migrate
 // npx prisma studio
 
-generator client {
-  provider = "prisma-client-js"
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-datasource db {
-  provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+generator client {
+  provider = "prisma-client-js"
 }
 
 // Definition of the Person model
@@ -29,6 +29,7 @@ model Person {
   updatedAt      DateTime?        @updatedAt @map(name: "updated_at")
   TypePersonType TypePersonType[]
   movies         Movie[]          @relation("MovieCast")
+  directedMovies Movie[]          @relation("DirectedMovies")
   Rental         Rental[]
 }
 
@@ -62,6 +63,8 @@ model Movie {
   category        MovieCategory @relation(fields: [categoryId], references: [id])
   rentalValue     Float
   availableCopies Int
+  directorId      Int
+  director        Person        @relation("DirectedMovies", fields: [directorId], references: [id])
   createdAt       DateTime?     @default(now()) @map(name: "created_at")
   updatedAt       DateTime?     @updatedAt @map(name: "updated_at")
   cast            Person[]      @relation("MovieCast")
@@ -95,6 +98,8 @@ model Rental {
 model User {
   id            String          @id @default(cuid())
   name          String?
+  username      String          @unique
+  password      String
   email         String          @unique
   emailVerified DateTime?
   image         String?

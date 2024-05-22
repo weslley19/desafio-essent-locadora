@@ -1,6 +1,5 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { format, parse } from 'date-fns'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -107,4 +106,78 @@ export const serializeQueryParams = (params: any): string => {
       }
     })
     .join('&')
+}
+
+export const dateBrMask = (date: string): string => {
+  const regex = /^\d{4}-\d{2}-\d{2}$/
+  if (!regex.test(date)) {
+    throw new Error('Formato de data inválido. Use o formato yyyy-MM-dd.')
+  }
+
+  const [ano, mes, dia] = date.split('-')
+  return `${dia}/${mes}/${ano}`
+}
+
+export const translateURLName = (url: string): string => {
+  const routes: { [key: string]: string } = {
+    '/': 'Home',
+    '/person': 'Membros',
+    '/dizimo': 'Dízimos',
+    '/offer': 'Ofertas',
+    '/releases': 'Lançamentos'
+  }
+
+  return routes[url] ?? ''
+}
+
+export const formatDateInput = (value: string): string => {
+  value = value.replace(/\D/g, '')
+  if (value.length > 8) {
+    value = value.substring(0, 8)
+  }
+
+  if (value.length > 4) {
+    value = value.replace(/(\d{2})(\d{2})(\d{1,4})/, '$1/$2/$3')
+  } else if (value.length > 2) {
+    value = value.replace(/(\d{2})(\d{1,2})/, '$1/$2')
+  }
+  return value
+}
+
+export const formatCPFInput = (value: string): string => {
+  value = value.replace(/\D/g, '')
+  if (value.length > 11) {
+    value = value.substring(0, 11)
+  }
+
+  if (value.length > 9) {
+    value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4')
+  } else if (value.length > 6) {
+    value = value.replace(/(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3')
+  } else if (value.length > 3) {
+    value = value.replace(/(\d{3})(\d{1,3})/, '$1.$2')
+  }
+  return value
+}
+
+export const dateUsMask = (value: string): string => {
+  if (value.length === 10) {
+    const [day, month, year] = value.split('/')
+    return `${year}-${month}-${day}`
+  }
+  return value
+}
+
+export const formatCurrencyInput = (value: string): string => {
+  value = value.replace(/[^0-9,]/g, '')
+  value = value.replace(',', '.')
+  const number = parseFloat(value)
+
+  if (isNaN(number)) return ''
+
+  return number.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2,
+  })
 }

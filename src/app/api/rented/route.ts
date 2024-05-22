@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/db'
 import { CreateRental } from '@/types/rented'
-import { create } from 'domain'
 
 export async function GET() {
   try {
-    const persons = await prisma.rental.findMany({
+    const renteds = await prisma.rental.findMany({
       include: { movie: true, renter: true }
     })
-    return NextResponse.json(persons)
+    return NextResponse.json({ message: 'Aluguéis encontrados com sucesso', data: renteds }, { status: 200 })
   } catch (err) {
     return NextResponse.json({ message: 'Erro' }, { status: 400 })
   }
@@ -38,17 +37,15 @@ export async function POST(req: NextRequest) {
       data: {
         renter: { connect: { id: parseInt(renterId) } },
         movie: { connect: { id: parseInt(movieId) } },
-        lateFee: parseInt(lateFee),
-        rentalDate,
-        returnDate,
-        returnDeadline,
+        rentalDate: new Date(rentalDate),
+        returnDate: new Date(returnDate),
+        returnDeadline: new Date(returnDate),
         status,
         totalAmount: parseInt(totalAmount)
       }
     })
     return NextResponse.json({ message: 'Aluguel criado com sucesso', rent }, { status: 201 })
   } catch (err) {
-    console.log(err)
     return NextResponse.json({ message: 'Erro' }, { status: 500 })
   }
 }

@@ -1,16 +1,16 @@
-import DataTable from "@/components/shared/data-table/data-table"
 import { TableCell, TableRow } from "@/components/ui/table"
 import { getPerson } from "./actions"
 import FormPerson from "./_components/form-person/form-person"
 import { cpfMask, dateBrFormat } from "@/lib/utils"
+import DataTable from "@/components/data-table"
 
 export default async function Person() {
   const persons = await getPerson()
 
   const Body = (): JSX.Element => (
     <>
-      {persons.data.map((person, index) => (
-        <TableRow key={index}>
+      {persons?.map((person) => (
+        <TableRow key={person.id}>
           <TableCell>{person.name}</TableCell>
           <TableCell>{cpfMask(person.cpf)}</TableCell>
           <TableCell>{dateBrFormat(person.birthday)}</TableCell>
@@ -24,11 +24,13 @@ export default async function Person() {
     <>
       <FormPerson />
 
+      <div className="mt-10" />
+
       <DataTable
         title="Lista de pessoas"
         header={["Nome", "CPF", "Data de nascimento", "Tipo"]}
         body={<Body />}
-        className="mt-6"
+        total={persons?.length ?? 0}
       />
     </>
   )

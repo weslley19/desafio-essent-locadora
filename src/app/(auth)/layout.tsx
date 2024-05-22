@@ -1,49 +1,20 @@
-import { ThemeProvider } from "@/components/theme-provider"
-import { ToastContainer } from 'react-toastify'
-import SideBar from "@/components/shared/sidebar/sidebar";
-import Header from "@/components/shared/header/header";
+import Aside from "@/components/aside"
+import Footer from "@/components/footer"
+import Header from "@/components/header"
+import { Toaster } from "@/components/ui/sonner"
 
-import 'react-toastify/dist/ReactToastify.css';
-import MenuNavigation from "@/components/shared/menu-navigation/menu-navigation";
-import { Button } from "@/components/ui/button";
-import logout from "./actions";
-import PrivateRoutes from "@/components/shared/private-routes/private-routes";
-
-export default function RootLayout({ children }: Readonly<{ children?: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head />
-      <body>
-        <PrivateRoutes>
-          <ToastContainer />
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <>
-              <div className="flex font-extra">
-                <SideBar>
-                  <MenuNavigation />
-                  <form action={logout} className="absolute w-full p-6 bottom-0">
-                    <Button className="w-full">Sair</Button>
-                  </form>
-                </SideBar>
-                <div className="w-full flex flex-col">
-                  <Header />
-                  <main className="flex-grow py-8 bg-content">
-                    <div className="container">
-                      {children}
-                    </div>
-                  </main>
-                </div>
-              </div>
-            </>
-          </ThemeProvider>
-        </PrivateRoutes>
-      </body>
-    </html>
+    <>
+      <div className="flex">
+        <Aside />
+        <main className="flex min-h-screen flex-col flex-1 bg-container">
+          <Header />
+          <div className="px-3 py-3 container bg-secondary grow shrink-0 basis-auto">{children}</div>
+          <Toaster />
+          <Footer />
+        </main>
+      </div>
+    </>
   )
 }
-

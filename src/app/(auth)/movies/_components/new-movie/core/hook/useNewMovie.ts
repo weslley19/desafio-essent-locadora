@@ -32,6 +32,7 @@ export function useNewMovie() {
     formData.append('rentalValue', dataToSend.rentalValue)
     formData.append('availableCopies', dataToSend.availableCopies.toString())
     formData.append('cast', JSON.stringify(dataToSend.cast))
+    formData.append('directorId', dataToSend.directorId.toString())
 
     const response = await createMovie(formData)
     if (response.status === 201) {
