@@ -44,12 +44,12 @@ const FormRented = ({ locadores, movies }: FormRentedProps): JSX.Element => {
           <Label>Filme:</Label>
           <Select
             {...hookForm.register('movieId')}
-            options={movies.map((movie) => (
+            options={movies?.map((movie) => (
               { label: movie.title, value: movie.id.toString() }
             ))}
             onChange={(event) => {
               handleGetValueMovie(
-                movies.find((movie) => movie.id === Number(event.value)) as Movie
+                movies?.find((movie) => movie.id === Number(event.value)) as Movie
               );
               hookForm.setValue('movieId', event.value);
             }}
