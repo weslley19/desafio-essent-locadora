@@ -1,8 +1,8 @@
-import DataTable from "@/components/shared/data-table/data-table"
 import { getTypesPerson } from "./actions"
 import { TableCell, TableRow } from "@/components/ui/table"
 import FormTypePerson from "./_components/form-type-person/form-type-person"
 import { dateBrFormat } from "@/lib/utils"
+import DataTable from "@/components/data-table"
 
 export default async function TypePerson() {
   const typesPerson = await getTypesPerson()
@@ -25,7 +25,6 @@ export default async function TypePerson() {
         title="Tipos de pessoas"
         header={["Nome", "Criado em"]}
         body={<Body />}
-        className="mt-6"
       />
     </>
   )
