@@ -20,7 +20,7 @@ interface FormRentedProps {
 const FormRented = ({ locadores, movies }: FormRentedProps): JSX.Element => {
   const { hookForm, onSubmit, handleCalculateTotal, handleGetValueMovie } = useFormRented()
 
-  const clients = locadores.filter(person => person?.TypePersonType?.some(type => type.typePersonId === 1))
+  const clients = locadores?.filter(person => person?.TypePersonType?.some(type => type.typePersonId === 1))
 
   return (
     <Modal
