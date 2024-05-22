@@ -28,8 +28,8 @@ const Forms = ({ cast }: FormsProps) => {
     { value: '5', label: 'Desenho' },
   ]
 
-  const actors = cast.filter(person => person?.TypePersonType?.some(type => type.typePersonId === 2))
-  const director = cast.filter(person => person?.TypePersonType?.some(type => type.typePersonId === 3))
+  const actors = cast?.filter(person => person?.TypePersonType?.some(type => type.typePersonId === 2))
+  const director = cast?.filter(person => person?.TypePersonType?.some(type => type.typePersonId === 3))
 
   return (
     <Modal
